@@ -5,6 +5,9 @@ import routes from './api';
 
 const router = Router();
 
+router.use('/', (req, res) => {
+  res.send('Welcome')
+})
 router.use('/api/v1', routes);
 router.post('/api/v1/auth/login', async (req, res, next) => {
   try {
