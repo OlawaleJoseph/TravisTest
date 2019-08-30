@@ -4,5 +4,15 @@ node_js:
 cache:
   directories:
     - "node_modules"
-after_success:
-   - npm run coveralls
+services:
+  - postgresql
+env:
+  global:
+  - PGPORT=5432
+  - NODE_ENV=test
+before_script:
+  - psql -c 'create database way_farer_test;' -U postgres
+script:
+  - npm run test
+notifications:
+  - email: false
